@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Mentoring.Repository
 {
     class DefaultMentorRepository : IMentorRepository
     {
-        private readonly List<Mentor> mentors = new List<Mentor>();
+        private readonly List<Mentor> _mentors = new List<Mentor>();
 
         public void Add(Mentor mentor)
         {
-            mentors.Add(mentor);
+            mentor.Id = _mentors.Count + 1;
+            _mentors.Add(mentor);
         }
 
         public List<Mentor> Find()
         {
-            return mentors;
+            return _mentors;
         }
     }
 }

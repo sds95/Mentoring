@@ -1,23 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Mentoring
+﻿namespace Mentoring
 {
     class Mentor
     {
-        //private int _id;
+        private int _id;
         private string _name;
 
-        public Mentor(/*int id*/ string name)
+        public Mentor(string name)
         {
-            //_id = id;
             _name = name;
         }
 
-        //public int Id => _id;
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                _id = value;
+            }
+        }
         public string Name => _name;
     }
 }

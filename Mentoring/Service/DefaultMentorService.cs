@@ -2,26 +2,24 @@
 using Mentoring.Service;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mentoring
 {
     class DefaultMentorService : IMentorService
     {
-        IMentorRepository repository = new DefaultMentorRepository();
+        private readonly IMentorRepository _repository = new DefaultMentorRepository();
 
         public void Add(Mentor mentor)
         {
-           repository.Add(mentor);
+            _repository.Add(mentor);
         }
+
         public void ListAllMentors()
         {
-            List<Mentor> mentors = repository.Find();
+            List<Mentor> mentors = _repository.Find();
             foreach (var mentor in mentors)
             {
-                Console.WriteLine(mentor.Name);
+                Console.WriteLine(mentor.Id + " " + mentor.Name);
             }
         }
     }
