@@ -57,10 +57,11 @@ namespace Mentoring
                             int menteeId = Convert.ToInt32(Console.ReadLine());
 
                             Console.Write("Введите дату начала обучения ");
-                            
                             DateTime startMentoring = DateTime.Parse(Console.ReadLine());
+                            startMentoring = startMentoring.Date;
                             Console.Write("Введите дату окончания обучения ");
                             DateTime endMentoring = DateTime.Parse(Console.ReadLine());
+                            endMentoring = endMentoring.Date;
 
                             Mentorship mentorship = new Mentorship(mentorId, menteeId, startMentoring, endMentoring);
                             mentorshipService.Add(mentorship); 
@@ -72,31 +73,61 @@ namespace Mentoring
                             mentorshipService.ListAllMentorships();
                             break;
                         }
-                    case "mentorship mentor":
+                    case "mentorship mentor -id":
                         {
                             Console.WriteLine("Введите Id ментора - ");
                             int mentorId = Convert.ToInt32(Console.ReadLine());
 
-                            mentorshipService.FindByMentorId(mentorId);
+                            mentorshipService.ListByMentorId(mentorId);
 
                             break;
                         }
-                    case "mentorship mentee":
+                    case "mentorship mentee -id":
                         { 
                             Console.WriteLine("Введите Id обучающегося - ");
                             int menteeId = Convert.ToInt32(Console.ReadLine());
 
-                            mentorshipService.FindByMenteeId(menteeId);
+                            mentorshipService.ListByMenteeId(menteeId);
 
                             break;
                         }
+                    case "mentorship mentor -date":
+                        {
+                            Console.WriteLine("Введите Id ментора - ");
+                            int mentorId = Convert.ToInt32(Console.ReadLine());
+                            Console.Write("Введите дату начала периода ");
+                            DateTime startPeriodCheck = DateTime.Parse(Console.ReadLine());
+                            startPeriodCheck = startPeriodCheck.Date;
+                            Console.Write("Введите дату окончания периода ");
+                            DateTime endPeriodCheck = DateTime.Parse(Console.ReadLine());
+                            endPeriodCheck = endPeriodCheck.Date;
+
+                            mentorshipService.ListByMentorIdDate(mentorId, startPeriodCheck, endPeriodCheck);
+    
+                            break;
+                        }
+                    case "mentorship mentee -date":
+                        {
+                            Console.WriteLine("Введите Id ментора - ");
+                            int menteeId = Convert.ToInt32(Console.ReadLine());
+                            Console.Write("Введите дату начала периода ");
+                            DateTime startPeriodCheck = DateTime.Parse(Console.ReadLine());
+                            startPeriodCheck = startPeriodCheck.Date;
+                            Console.Write("Введите дату окончания периода ");
+                            DateTime endPeriodCheck = DateTime.Parse(Console.ReadLine());
+                            endPeriodCheck = endPeriodCheck.Date;
+
+                            mentorshipService.ListByMenteeIdDate(menteeId, startPeriodCheck, endPeriodCheck);
+    
+                            break;
+                        }
+
                     case "exit":
                         start = true;
                         break;
           
                     default:
                         Console.WriteLine("Не корректная команда");
-                        start = true;
                         break;
                 }
             }

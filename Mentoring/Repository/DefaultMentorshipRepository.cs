@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Mentoring.Repository
 {
@@ -16,7 +17,7 @@ namespace Mentoring.Repository
             return _mentorships;
         }
 
-        /*public List<Mentorship> FindByMentorId(int mentorId)
+        /*public List<Mentorship> ListByMentorId(int mentorId)
         {
             List<Mentorship> mentorshipsByMentorId = new List<Mentorship>();
             foreach (var mentorship in _mentorships)
@@ -47,5 +48,36 @@ namespace Mentoring.Repository
             );
         }
 
+        public List<Mentorship> FindByMentorIdDate(int mentorId, DateTime startPeriodCheck, DateTime endPeriodCheck)
+        {
+            List<Mentorship> mentorshipsByMentorIdDate = new List<Mentorship>();
+            foreach (var mentorship in _mentorships)
+            {
+                if (mentorId == mentorship.MentorId)
+                {
+                    if (mentorship.StartMentoring <= endPeriodCheck && mentorship.EndMentoring >= startPeriodCheck) 
+                    {
+                        mentorshipsByMentorIdDate.Add(mentorship);
+                    }
+                }
+            }
+            return mentorshipsByMentorIdDate;
+        }
+         
+        public List<Mentorship> FindByMenteeIdDate(int menteeId, DateTime startPeriodCheck, DateTime endPeriodCheck)
+        {
+            List<Mentorship> mentorshipsByMenteeIdDate = new List<Mentorship>();
+            foreach (var mentorship in _mentorships)
+            {
+                if (menteeId == mentorship.MenteeId)
+                {
+                    if (mentorship.StartMentoring <= endPeriodCheck && mentorship.EndMentoring >= startPeriodCheck) 
+                    {
+                        mentorshipsByMenteeIdDate.Add(mentorship);
+                    }
+                }
+            }
+            return mentorshipsByMenteeIdDate;
+        }
     }
 }
